@@ -112,7 +112,9 @@ class _MyLoginState extends State<MyLogin> {
                   },
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
-                    // Add your validation logic here
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
                     return null;
                   },
                   onSaved: (text) {
@@ -132,7 +134,9 @@ class _MyLoginState extends State<MyLogin> {
                     });
                   },
                   validator: (value) {
-                    // Add your validation logic here
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
                     return null;
                   },
                   onSaved: (text) {
@@ -168,6 +172,8 @@ class _MyLoginState extends State<MyLogin> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState?.save();
+                        // Here you can implement Firebase login logic.
+                        // For now, navigate to the home screen.
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomePage()),
